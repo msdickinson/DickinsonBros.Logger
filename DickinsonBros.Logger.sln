@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DickinsonBros.Logger", "DickinsonBros.Logger\DickinsonBros.Logger.csproj", "{698AF79C-E4E1-4B32-8E41-CB930C4C652F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 Library", "1 Library", "{750743EA-2BBC-4D80-9A9D-262C8C611ACE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 Interface", "0 Interface", "{D6E5AB0D-5638-45D8-96E0-112E161E7824}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DickinsonBros.Logger.Abstractions", "DickinsonBros.Logger.Abstractions\DickinsonBros.Logger.Abstractions.csproj", "{E5FBDAB3-8193-4B60-9AAC-7A43F5850BE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9 Misc", "9 Misc", "{9FA09BA1-23B0-4136-A79E-55738435C632}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Abstractions", "Abstractions", "{DC9C06C2-8C15-4576-8276-831D341E64D4}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Abstractions\CreateNugetPackage.ps1 = Scripts\Abstractions\CreateNugetPackage.ps1
+		Scripts\Abstractions\CreateNugetPackagePreRelease.ps1 = Scripts\Abstractions\CreateNugetPackagePreRelease.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{63D2BD4B-3E26-4429-9147-90A5B13C730E}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Library\CreateNugetPackage.ps1 = Scripts\Library\CreateNugetPackage.ps1
+		Scripts\Library\CreateNugetPackagePreRelease.ps1 = Scripts\Library\CreateNugetPackagePreRelease.ps1
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{698AF79C-E4E1-4B32-8E41-CB930C4C652F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{698AF79C-E4E1-4B32-8E41-CB930C4C652F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{698AF79C-E4E1-4B32-8E41-CB930C4C652F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{698AF79C-E4E1-4B32-8E41-CB930C4C652F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5FBDAB3-8193-4B60-9AAC-7A43F5850BE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5FBDAB3-8193-4B60-9AAC-7A43F5850BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5FBDAB3-8193-4B60-9AAC-7A43F5850BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5FBDAB3-8193-4B60-9AAC-7A43F5850BE5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{698AF79C-E4E1-4B32-8E41-CB930C4C652F} = {750743EA-2BBC-4D80-9A9D-262C8C611ACE}
+		{E5FBDAB3-8193-4B60-9AAC-7A43F5850BE5} = {D6E5AB0D-5638-45D8-96E0-112E161E7824}
+		{DC9C06C2-8C15-4576-8276-831D341E64D4} = {9FA09BA1-23B0-4136-A79E-55738435C632}
+		{63D2BD4B-3E26-4429-9147-90A5B13C730E} = {9FA09BA1-23B0-4136-A79E-55738435C632}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ECCD31BA-0C8F-45CD-8320-B0A16F6B1F98}
+	EndGlobalSection
+EndGlobal

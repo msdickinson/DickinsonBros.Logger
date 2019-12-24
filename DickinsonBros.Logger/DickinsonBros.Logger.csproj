@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Configurations>Debug;Release</Configurations>
+    <Version>1.0.0</Version>
+    <Authors>Mark Dickinson</Authors>
+    <Company>DickinsonBros</Company>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DickinsonBros.Logger.Abstractionsci-20191224-201313" Version="1.0.0" />
+    <PackageReference Include="DickinsonBros.Redactor.Abstractionsci-20191224-200914" Version="1.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.0" />
+  </ItemGroup>
+
+</Project>

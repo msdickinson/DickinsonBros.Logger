@@ -21,8 +21,7 @@
 
   <ItemGroup>
     <PackageReference Include="DickinsonBros.Logger.Abstractions" Version="1.0.0" />
-    <PackageReference Include="DickinsonBros.Logger.Abstractionsci-20191224-201313" Version="1.0.0" />
-    <PackageReference Include="DickinsonBros.Redactor.Abstractionsci-20191224-200914" Version="1.0.0" />
+    <PackageReference Include="DickinsonBros.Redactor.Abstractions" Version="1.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.1" />
   </ItemGroup>
 

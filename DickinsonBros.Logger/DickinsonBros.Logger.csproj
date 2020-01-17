@@ -6,12 +6,24 @@
     <Version>1.0.0</Version>
     <Authors>Mark Dickinson</Authors>
     <Company>DickinsonBros</Company>
+    <RepositoryUrl>https://github.com/msdickinson/DickinsonBros.Logger.git</RepositoryUrl>
+    <Description>
+      A logging service that redacts all logs
+
+      Features
+
+      * Redacts all logs
+      * Allows for dictionary of variables to be past in that all become first class propertys in the log.
+      * Ability to add a correlation id with scopes
+      * Allows for improved testability
+    </Description>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DickinsonBros.Logger.Abstractions" Version="1.0.0" />
     <PackageReference Include="DickinsonBros.Logger.Abstractionsci-20191224-201313" Version="1.0.0" />
     <PackageReference Include="DickinsonBros.Redactor.Abstractionsci-20191224-200914" Version="1.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.1" />
   </ItemGroup>
 
 </Project>

@@ -16,5 +16,8 @@ jobs:
         dotnet-version: 3.1.100
     - name: Build with dotnet
       run: dotnet pack "DickinsonBros.Logger" -c Release  -p:PackageID="DickinsonBros.Logger"
+    - name: Run Unit Tests
+      run: dotnet test -- verbosity normal 
     - name: Publish Package
       run: dotnet nuget push ./DickinsonBros.Logger/bin/Release/*.nupkg -k ${{ secrets.NugetKey }} -s https://api.nuget.org/v3/index.json
+  

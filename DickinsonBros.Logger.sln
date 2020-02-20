@@ -7,12 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DickinsonBros.Logger", "Dic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 Library", "1 Library", "{750743EA-2BBC-4D80-9A9D-262C8C611ACE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9 Scripts", "9 Scripts", "{9FA09BA1-23B0-4136-A79E-55738435C632}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9 Misc", "9 Misc", "{9FA09BA1-23B0-4136-A79E-55738435C632}"
 	ProjectSection(SolutionItems) = preProject
 		Scripts\CreateNugetPackagePreRelease.ps1 = Scripts\CreateNugetPackagePreRelease.ps1
+		DickinsonBros.Logger.runsettings = DickinsonBros.Logger.runsettings
+		Scripts\Publish.yml = Scripts\Publish.yml
+		Scripts\Test.yml = Scripts\Test.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DickinsonBros.Logger.Tests", "DickinsonBros.Logger.Tests\DickinsonBros.Logger.Tests.csproj", "{77A14F2C-D879-443F-9B83-261CD8D2A48C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DickinsonBros.Logger.Tests", "DickinsonBros.Logger.Tests\DickinsonBros.Logger.Tests.csproj", "{77A14F2C-D879-443F-9B83-261CD8D2A48C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

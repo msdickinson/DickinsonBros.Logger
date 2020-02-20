@@ -63,13 +63,13 @@ namespace DickinsonBros.Logger
             _logger.Log(logLevel, 1, ((object)(new LogState(propertiesRedacted))), exception, (_, exception) => Formatter(message, propertiesRedacted));
         }
 
-        internal string Formatter(string message, IList<KeyValuePair<string, object>> keyValuePairs)
+        internal string Formatter(string message, IList<KeyValuePair<string, object>> propertiesRedacted)
         {
             return message +
                     Environment.NewLine +
                     String.Concat
                     (
-                        keyValuePairs.Select
+                        propertiesRedacted.Select
                         (
                             keyValuePair => $"{keyValuePair.Key}: {keyValuePair.Value}" +
                                             Environment.NewLine

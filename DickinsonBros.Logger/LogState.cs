@@ -36,9 +36,7 @@ namespace DickinsonBros.Logger
             }
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            throw new NotImplementedException();
-        }
+
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }

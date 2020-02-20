@@ -10,4 +10,6 @@ Features
 * Allows for dictionary of variables to be past in that all become first class propertys in the log.
 * Ability to add a correlation id that works though async in straight forward fashion
 * Allows for improved testability
--
+
+<a href="https://dev.azure.com/marksamdickinson/DickinsonBros/_build?definitionScope=%5CDickinsonBros.DurableRest">Builds</a>
+

@@ -12,7 +12,7 @@
               </Include>
               <Exclude>
                 <ModulePath>.*CPPUnitTestFramework.*</ModulePath>
-                <ModulePath>.*Tests.dll</ModulePath>
+                <ModulePath>.*Tests.dll</ModulePath> 
                 <ModulePath>.*moq.dll</ModulePath>
                 <ModulePath>.*morelinq.dll</ModulePath>
                 <ModulePath>.*newtonsoft.json.bson.dll</ModulePath>

@@ -19,7 +19,7 @@
                 <ModulePath>.*newtonsoft.json.dll</ModulePath>
               </Exclude>
             </ModulePaths>
-            <Attributes>
+            <Attributes> 
               <Exclude>
                 <Attribute>^System\.Diagnostics\.CodeAnalysis.ExcludeFromCodeCoverageAttribute$</Attribute>
               </Exclude>

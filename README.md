@@ -1,6 +1,6 @@
 # DickinsonBros.Logger
 <a href="https://www.nuget.org/packages/DickinsonBros.Logger/">
-    <img src="https://img.shields.io/nuget/v/DickinsonBros.Logger">
+  <img src="https://img.shields.io/nuget/v/DickinsonBros.Logger">
 </a>
 
 A logging service that redacts all logs

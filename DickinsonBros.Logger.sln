@@ -17,6 +17,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "9 Misc", "9 Misc", "{9FA09B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DickinsonBros.Logger.Tests", "DickinsonBros.Logger.Tests\DickinsonBros.Logger.Tests.csproj", "{77A14F2C-D879-443F-9B83-261CD8D2A48C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 Runner", "2 Runner", "{31EB1811-CCD7-450D-BB1A-D83933F6E027}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DickinsonBros.Logger.Runner", "DickinsonBros.Logger.Runner\DickinsonBros.Logger.Runner.csproj", "{5DAC4DCC-CC68-4EA4-895D-4866CA55C0EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,10 @@ Global
 		{77A14F2C-D879-443F-9B83-261CD8D2A48C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77A14F2C-D879-443F-9B83-261CD8D2A48C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77A14F2C-D879-443F-9B83-261CD8D2A48C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DAC4DCC-CC68-4EA4-895D-4866CA55C0EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DAC4DCC-CC68-4EA4-895D-4866CA55C0EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DAC4DCC-CC68-4EA4-895D-4866CA55C0EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DAC4DCC-CC68-4EA4-895D-4866CA55C0EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +46,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{698AF79C-E4E1-4B32-8E41-CB930C4C652F} = {750743EA-2BBC-4D80-9A9D-262C8C611ACE}
 		{77A14F2C-D879-443F-9B83-261CD8D2A48C} = {750743EA-2BBC-4D80-9A9D-262C8C611ACE}
+		{5DAC4DCC-CC68-4EA4-895D-4866CA55C0EF} = {31EB1811-CCD7-450D-BB1A-D83933F6E027}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ECCD31BA-0C8F-45CD-8320-B0A16F6B1F98}

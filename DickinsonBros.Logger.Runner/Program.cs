@@ -18,6 +18,7 @@ namespace DickinsonBros.Logger.Runner
     class Program
     {
         IConfiguration _configuration;
+        ApplicationLifetime _applicationLifetime;
         async static Task Main()
         {
             await new Program().DoMain();
@@ -28,34 +29,41 @@ namespace DickinsonBros.Logger.Runner
             {
                 var services = InitializeDependencyInjection();
                 ConfigureServices(services);
-                using (var provider = services.BuildServiceProvider())
+
+                using (var _applicationLifetime = new Domain.ApplicationLifetime())
                 {
-                    var loggingService = provider.GetRequiredService<ILoggingService<Program>>();
-
-                    var data = new Dictionary<string, object>
+                    using (var provider = services.BuildServiceProvider())
                     {
-                        { "Username", "DemoUser" },
-                        { "Password", 
+                        var applicationLifetime = provider.GetRequiredService<IApplicationLifetime>();
+
+                        var loggingService = provider.GetRequiredService<ILoggingService<Program>>();
+
+                        var data = new Dictionary<string, object>
+                        {
+                            { "Username", "DemoUser" },
+                            { "Password",
 @"{
-  ""Password"": ""password""
+    ""Password"": ""password""
 }"
-                        }
-                    };
+                            }
+                        };
 
-                    var message = "Generic Log Message";
-                    var exception = new Exception("Error");
+                        var message = "Generic Log Message";
+                        var exception = new Exception("Error");
 
-                    loggingService.LogDebugRedacted(message);
-                    loggingService.LogDebugRedacted(message, data);
+                        loggingService.LogDebugRedacted(message);
+                        loggingService.LogDebugRedacted(message, data);
 
-                    loggingService.LogInformationRedacted(message);
-                    loggingService.LogInformationRedacted(message, data);
+                        loggingService.LogInformationRedacted(message);
+                        loggingService.LogInformationRedacted(message, data);
 
-                    loggingService.LogWarningRedacted(message);
-                    loggingService.LogWarningRedacted(message, data);
+                        loggingService.LogWarningRedacted(message);
+                        loggingService.LogWarningRedacted(message, data);
 
-                    loggingService.LogErrorRedacted(message, exception);
-                    loggingService.LogErrorRedacted(message, exception, data);
+                        loggingService.LogErrorRedacted(message, exception);
+                        loggingService.LogErrorRedacted(message, exception, data);
+                        _applicationLifetime.StopApplication();
+                    }        
                 }
             }
             catch (Exception e)
@@ -73,8 +81,17 @@ namespace DickinsonBros.Logger.Runner
         {
             services.AddOptions();
             services.AddScoped<ICorrelationService, CorrelationService>();
-            services.AddLogging(cfg => cfg.AddConsole());
-            services.AddSingleton<IApplicationLifetime, ApplicationLifetime>();
+            services.AddLogging(config =>
+            {
+                config.AddConfiguration(_configuration.GetSection("Logging"));
+
+                if (Environment.GetEnvironmentVariable("BUILD_CONFIGURATION") == "DEBUG")
+                {
+                    config.AddConsole();
+                }
+            });
+
+            services.AddSingleton<IApplicationLifetime, Domain.ApplicationLifetime>();
             services.AddScoped(typeof(ILoggingService<>), typeof(LoggingService<>));
             services.AddSingleton<IRedactorService, RedactorService>();
             services.Configure<JsonRedactorOptions>(_configuration.GetSection(nameof(JsonRedactorOptions)));

@@ -1,10 +1,9 @@
-﻿using DickinsonBros.Logger;
-using DickinsonBros.Logger.Abstractions;
+﻿using DickinsonBros.Logger.Abstractions;
+using DickinsonBros.Logger.Runner.Domain;
 using DickinsonBros.Redactor;
 using DickinsonBros.Redactor.Abstractions;
 using DickinsonBros.Redactor.Models;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -18,7 +17,6 @@ namespace DickinsonBros.Logger.Runner
     class Program
     {
         IConfiguration _configuration;
-        ApplicationLifetime _applicationLifetime;
         async static Task Main()
         {
             await new Program().DoMain();
@@ -27,15 +25,13 @@ namespace DickinsonBros.Logger.Runner
         {
             try
             {
-                var services = InitializeDependencyInjection();
-                ConfigureServices(services);
-
-                using (var _applicationLifetime = new Domain.ApplicationLifetime())
+                using (var applicationLifetime = new ApplicationLifetime())
                 {
+                    var services = InitializeDependencyInjection();
+                    ConfigureServices(services, applicationLifetime);
+
                     using (var provider = services.BuildServiceProvider())
                     {
-                        var applicationLifetime = provider.GetRequiredService<IApplicationLifetime>();
-
                         var loggingService = provider.GetRequiredService<ILoggingService<Program>>();
 
                         var data = new Dictionary<string, object>
@@ -62,8 +58,9 @@ namespace DickinsonBros.Logger.Runner
 
                         loggingService.LogErrorRedacted(message, exception);
                         loggingService.LogErrorRedacted(message, exception, data);
-                        _applicationLifetime.StopApplication();
-                    }        
+                    }
+                    applicationLifetime.StopApplication();
+                    await Task.CompletedTask.ConfigureAwait(false);
                 }
             }
             catch (Exception e)
@@ -77,7 +74,7 @@ namespace DickinsonBros.Logger.Runner
             }
         }
 
-        private void ConfigureServices(IServiceCollection services)
+        private void ConfigureServices(IServiceCollection services, ApplicationLifetime applicationLifetime)
         {
             services.AddOptions();
             services.AddScoped<ICorrelationService, CorrelationService>();
@@ -91,7 +88,7 @@ namespace DickinsonBros.Logger.Runner
                 }
             });
 
-            services.AddSingleton<IApplicationLifetime, Domain.ApplicationLifetime>();
+            services.AddSingleton<IApplicationLifetime>(applicationLifetime);
             services.AddScoped(typeof(ILoggingService<>), typeof(LoggingService<>));
             services.AddSingleton<IRedactorService, RedactorService>();
             services.Configure<JsonRedactorOptions>(_configuration.GetSection(nameof(JsonRedactorOptions)));

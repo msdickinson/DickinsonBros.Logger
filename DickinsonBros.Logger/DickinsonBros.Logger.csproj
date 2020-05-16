@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <Configurations>Debug;Release</Configurations>
-    <Version>1.0.1</Version>
+    <Version>1.0.2</Version>
     <Authors>Mark Dickinson</Authors>
     <Company>DickinsonBros</Company>
     <RepositoryUrl>https://github.com/msdickinson/DickinsonBros.Logger.git</RepositoryUrl>
@@ -22,7 +22,7 @@
   <ItemGroup>
     <PackageReference Include="DickinsonBros.Logger.Abstractions" Version="1.0.0" />
     <PackageReference Include="DickinsonBros.Redactor.Abstractions" Version="1.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.4" />
   </ItemGroup>
 
 </Project>

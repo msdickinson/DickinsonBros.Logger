@@ -4,10 +4,6 @@ pr:
     branches:
          include:
          - master
-    paths:
-          exclude:
-          - README.md
-          - Scripts/*
 
 pool:
  vmImage: 'windows-latest'

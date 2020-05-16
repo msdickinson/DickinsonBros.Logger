@@ -1,5 +1,5 @@
 ﻿using DickinsonBros.Logger.Abstractions;
-using DickinsonBros.Logger.Runner.Domain;
+using DickinsonBros.Logger.Runner.Services;
 using DickinsonBros.Redactor;
 using DickinsonBros.Redactor.Abstractions;
 using DickinsonBros.Redactor.Models;
@@ -35,14 +35,14 @@ namespace DickinsonBros.Logger.Runner
                         var loggingService = provider.GetRequiredService<ILoggingService<Program>>();
 
                         var data = new Dictionary<string, object>
-                        {
-                            { "Username", "DemoUser" },
-                            { "Password",
+                                   {
+                                       { "Username", "DemoUser" },
+                                       { "Password",
 @"{
     ""Password"": ""password""
 }"
-                            }
-                        };
+                                       }
+                                   };
 
                         var message = "Generic Log Message";
                         var exception = new Exception("Error");
@@ -58,10 +58,10 @@ namespace DickinsonBros.Logger.Runner
 
                         loggingService.LogErrorRedacted(message, exception);
                         loggingService.LogErrorRedacted(message, exception, data);
+                        applicationLifetime.StopApplication();
                     }
-                    applicationLifetime.StopApplication();
-                    await Task.CompletedTask.ConfigureAwait(false);
                 }
+                await Task.CompletedTask;
             }
             catch (Exception e)
             {
@@ -77,7 +77,6 @@ namespace DickinsonBros.Logger.Runner
         private void ConfigureServices(IServiceCollection services, ApplicationLifetime applicationLifetime)
         {
             services.AddOptions();
-            services.AddScoped<ICorrelationService, CorrelationService>();
             services.AddLogging(config =>
             {
                 config.AddConfiguration(_configuration.GetSection("Logging"));
@@ -90,6 +89,7 @@ namespace DickinsonBros.Logger.Runner
 
             services.AddSingleton<IApplicationLifetime>(applicationLifetime);
             services.AddScoped(typeof(ILoggingService<>), typeof(LoggingService<>));
+            services.AddSingleton<ICorrelationService, CorrelationService>();
             services.AddSingleton<IRedactorService, RedactorService>();
             services.Configure<JsonRedactorOptions>(_configuration.GetSection(nameof(JsonRedactorOptions)));
         }

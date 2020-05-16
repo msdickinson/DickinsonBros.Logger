@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 
-namespace DickinsonBros.Logger.Runner.Domain
+namespace DickinsonBros.Logger.Runner.Services
 {
     public class ApplicationLifetime : IApplicationLifetime, IDisposable
     {

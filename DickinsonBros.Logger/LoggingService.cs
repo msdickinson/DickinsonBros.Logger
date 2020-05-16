@@ -60,7 +60,7 @@ namespace DickinsonBros.Logger
                 propertiesRedacted.Add(new KeyValuePair<string, object>("CorrelationId", _correlationService.CorrelationId));
             }
 
-            _logger.Log(logLevel, 1, ((object)(new LogState(propertiesRedacted))), exception, (_, exception) => Formatter(message, propertiesRedacted));
+            _logger.Log(logLevel, 1, ((object)(new LogState(propertiesRedacted))), exception, (_, ex) => Formatter(message, propertiesRedacted));
         }
 
         internal string Formatter(string message, IList<KeyValuePair<string, object>> propertiesRedacted)

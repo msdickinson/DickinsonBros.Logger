@@ -121,7 +121,7 @@ var loggerFactory = LoggerFactory.Create(builder =>
         .AddConsole();
 });
 
-loggerFactory.CreateLogger<Program>();
+var logger = loggerFactory.CreateLogger<Program>();
 
 //IRedactorService
 var redactorServiceOptions = new RedactorServiceOptions
@@ -137,7 +137,7 @@ var redactorService = new RedactorService(options);
 var correlationService = new CorrelationService();
 
 //Logger Service
-var loggerService = new LoggingService<Program>(ILogger, redactorService, correlationService);
+var loggerService = new LoggingService<Program>(logger, redactorService, correlationService);
 
 ```
 

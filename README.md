@@ -110,18 +110,24 @@ using DickinsonBros.Logger.Abstractions;
 using DickinsonBros.Logger.Extensions;
 using DickinsonBros.Redactor.Extensions;
 using DickinsonBros.Redactor.Models;
-
+using Microsoft.Extensions.Logging;
 ...
 
 
 //ILogger<T>
-var ILogger = ...;
+var loggerFactory = LoggerFactory.Create(builder =>
+{
+    builder
+        .AddConsole();
+});
+
+loggerFactory.CreateLogger<Program>();
 
 //IRedactorService
 var redactorServiceOptions = new RedactorServiceOptions
 {
     PropertiesToRedact = new string[] { "Password" },
-    RegexValuesToRedact = new string[] { "Bearer" },
+    RegexValuesToRedact = new string[] { "Bearer" }
 };
 
 var options = Options.Create(redactorServiceOptions);
@@ -131,7 +137,7 @@ var redactorService = new RedactorService(options);
 var correlationService = new CorrelationService();
 
 //Logger Service
-var loggerService = new LoggingService<ClassName>(ILogger, redactorService, correlationService);
+var loggerService = new LoggingService<Program>(ILogger, redactorService, correlationService);
 
 ```
 
@@ -157,7 +163,7 @@ using DickinsonBros.Logger.Abstractions;
 using DickinsonBros.Logger.Extensions;
 using DickinsonBros.Redactor.Extensions;
 using DickinsonBros.Redactor.Models;
-
+using Microsoft.Extensions.Logging;
 ...  
 
 var services = new ServiceCollection();   

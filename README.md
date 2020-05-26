@@ -90,7 +90,9 @@ Example Runner Included in folder "DickinsonBros.Logger.Runner"
 
 <h2>Setup</h2>
 
-<h3>Add an implementation of for each dependency (IRedactor)</h3>
+<h3>Add an implementation for dependencys (IRedactor)</h3>
+
+<h4>IRedactor</h4>
 
     https://www.nuget.org/packages/DickinsonBros.Redactor/
 
@@ -104,7 +106,10 @@ Example Runner Included in folder "DickinsonBros.Logger.Runner"
 
 
 ```C#    
-using DickinsonBros.Logger;
+using DickinsonBros.Logger.Abstractions;
+using DickinsonBros.Logger.Extensions;
+using DickinsonBros.Redactor.Extensions;
+using DickinsonBros.Redactor.Models;
 
 ...
 

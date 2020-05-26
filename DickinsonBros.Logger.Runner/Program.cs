@@ -1,7 +1,7 @@
 ﻿using DickinsonBros.Logger.Abstractions;
+using DickinsonBros.Logger.Extensions;
 using DickinsonBros.Logger.Runner.Services;
-using DickinsonBros.Redactor;
-using DickinsonBros.Redactor.Abstractions;
+using DickinsonBros.Redactor.Extensions;
 using DickinsonBros.Redactor.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -23,6 +23,14 @@ namespace DickinsonBros.Logger.Runner
         }
         async Task DoMain()
         {
+            var loggerFactory = LoggerFactory.Create(builder =>
+            {
+                builder
+                    .AddConsole();
+            });
+
+            loggerFactory.CreateLogger<Program>();
+
             try
             {
                 using (var applicationLifetime = new ApplicationLifetime())
@@ -59,6 +67,8 @@ namespace DickinsonBros.Logger.Runner
                         loggingService.LogErrorRedacted(message, exception);
                         loggingService.LogErrorRedacted(message, exception, data);
                         applicationLifetime.StopApplication();
+
+                        provider.ConfigureAwait(true);
                     }
                 }
                 await Task.CompletedTask;
@@ -88,10 +98,9 @@ namespace DickinsonBros.Logger.Runner
             });
 
             services.AddSingleton<IApplicationLifetime>(applicationLifetime);
-            services.AddScoped(typeof(ILoggingService<>), typeof(LoggingService<>));
-            services.AddSingleton<ICorrelationService, CorrelationService>();
-            services.AddSingleton<IRedactorService, RedactorService>();
-            services.Configure<JsonRedactorOptions>(_configuration.GetSection(nameof(JsonRedactorOptions)));
+            services.AddLoggingService();
+            services.AddRedactorService();
+            services.Configure<RedactorServiceOptions>(_configuration.GetSection(nameof(RedactorServiceOptions)));
         }
 
         IServiceCollection InitializeDependencyInjection()

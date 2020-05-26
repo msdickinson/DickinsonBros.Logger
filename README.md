@@ -136,7 +136,7 @@ var redactorService = new RedactorService(options);
 //ICorrelationService
 var correlationService = new CorrelationService();
 
-//Logger Service
+//ILoggingService
 var loggerService = new LoggingService<Program>(logger, redactorService, correlationService);
 
 ```
@@ -183,7 +183,7 @@ services.AddLogging()
 //IRedactorService
 services.AddRedactorService();
 
-//IRedactorService
+//ILoggingService
 services.AddLoggingService();
 
 //Build Service Provider 

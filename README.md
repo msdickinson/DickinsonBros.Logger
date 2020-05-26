@@ -90,7 +90,7 @@ Example Runner Included in folder "DickinsonBros.Logger.Runner"
 
 <h2>Setup</h2>
 
-<h3>Add an implementation for dependencys (IRedactor)</h3>
+<h3>Add an implementation for dependencys</h3>
 
 <h4>IRedactor</h4>
 

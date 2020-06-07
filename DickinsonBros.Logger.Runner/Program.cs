@@ -38,11 +38,10 @@ namespace DickinsonBros.Logger.Runner
                     var services = InitializeDependencyInjection();
                     ConfigureServices(services, applicationLifetime);
 
-                    using (var provider = services.BuildServiceProvider())
-                    {
-                        var loggingService = provider.GetRequiredService<ILoggingService<Program>>();
+                    using var provider = services.BuildServiceProvider();
+                    var loggingService = provider.GetRequiredService<ILoggingService<Program>>();
 
-                        var data = new Dictionary<string, object>
+                    var data = new Dictionary<string, object>
                                    {
                                        { "Username", "DemoUser" },
                                        { "Password",
@@ -52,24 +51,23 @@ namespace DickinsonBros.Logger.Runner
                                        }
                                    };
 
-                        var message = "Generic Log Message";
-                        var exception = new Exception("Error");
+                    var message = "Generic Log Message";
+                    var exception = new Exception("Error");
 
-                        loggingService.LogDebugRedacted(message);
-                        loggingService.LogDebugRedacted(message, data);
+                    loggingService.LogDebugRedacted(message);
+                    loggingService.LogDebugRedacted(message, data);
 
-                        loggingService.LogInformationRedacted(message);
-                        loggingService.LogInformationRedacted(message, data);
+                    loggingService.LogInformationRedacted(message);
+                    loggingService.LogInformationRedacted(message, data);
 
-                        loggingService.LogWarningRedacted(message);
-                        loggingService.LogWarningRedacted(message, data);
+                    loggingService.LogWarningRedacted(message);
+                    loggingService.LogWarningRedacted(message, data);
 
-                        loggingService.LogErrorRedacted(message, exception);
-                        loggingService.LogErrorRedacted(message, exception, data);
-                        applicationLifetime.StopApplication();
+                    loggingService.LogErrorRedacted(message, exception);
+                    loggingService.LogErrorRedacted(message, exception, data);
+                    applicationLifetime.StopApplication();
 
-                        provider.ConfigureAwait(true);
-                    }
+                    provider.ConfigureAwait(true);
                 }
                 await Task.CompletedTask;
             }

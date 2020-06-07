@@ -102,46 +102,8 @@ Example Runner Included in folder "DickinsonBros.Logger.Runner"
     https://www.nuget.org/packages/DickinsonBros.Logger.Abstractions
     https://www.nuget.org/packages/DickinsonBros.Redactor.Abstractions
 
-<h3>Create Instance</h3>
 
-
-```C#    
-using DickinsonBros.Logger.Abstractions;
-using DickinsonBros.Logger.Extensions;
-using DickinsonBros.Redactor.Extensions;
-using DickinsonBros.Redactor.Models;
-using Microsoft.Extensions.Logging;
-...
-
-
-//ILogger<T>
-var loggerFactory = LoggerFactory.Create(builder =>
-{
-    builder
-        .AddConsole();
-});
-
-loggerFactory.CreateLogger<Program>();
-
-//IRedactorService
-var redactorServiceOptions = new RedactorServiceOptions
-{
-    PropertiesToRedact = new string[] { "Password" },
-    RegexValuesToRedact = new string[] { "Bearer" }
-};
-
-var options = Options.Create(redactorServiceOptions);
-var redactorService = new RedactorService(options);
-
-//ICorrelationService
-var correlationService = new CorrelationService();
-
-//Logger Service
-var loggerService = new LoggingService<Program>(ILogger, redactorService, correlationService);
-
-```
-
-<h3>Create Instance (With Dependency Injection)</h3>
+<h3>Create Instance With Dependency Injection</h3>
 
 <h4>Add appsettings.json File With Contents</h4>
 
@@ -183,7 +145,7 @@ services.AddLogging()
 //IRedactorService
 services.AddRedactorService();
 
-//IRedactorService
+//ILoggingService
 services.AddLoggingService();
 
 //Build Service Provider 

@@ -17,7 +17,7 @@ namespace DickinsonBros.Logger.Tests
             var uut = new LogState(propertiesRedacted);
 
             //Act
-            var observed = uut.GetEnumerator();
+            uut.GetEnumerator();
 
             //Assert
             Assert.AreEqual(propertiesRedacted, uut._keyValuePairs);

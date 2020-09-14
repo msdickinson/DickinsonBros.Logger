@@ -22,7 +22,7 @@ namespace DickinsonBros.Logger.Tests.Extensions
             // Assert
             Assert.IsTrue(serviceCollection.Any(serviceDefinition => serviceDefinition.ServiceType == typeof(ILoggingService<>) &&
                                                        serviceDefinition.ImplementationType == typeof(LoggingService<>) &&
-                                                       serviceDefinition.Lifetime == ServiceLifetime.Scoped));
+                                                       serviceDefinition.Lifetime == ServiceLifetime.Singleton));
 
             Assert.IsTrue(serviceCollection.Any(serviceDefinition => serviceDefinition.ServiceType == typeof(ICorrelationService) &&
                                            serviceDefinition.ImplementationType == typeof(CorrelationService) &&

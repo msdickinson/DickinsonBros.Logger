@@ -8,7 +8,7 @@ namespace DickinsonBros.Logger.Extensions
     {
         public static IServiceCollection AddLoggingService(this IServiceCollection serviceCollection)
         {
-            serviceCollection.AddScoped(typeof(ILoggingService<>), typeof(LoggingService<>));
+            serviceCollection.AddSingleton(typeof(ILoggingService<>), typeof(LoggingService<>));
             serviceCollection.AddSingleton<ICorrelationService, CorrelationService>();
 
             return serviceCollection;

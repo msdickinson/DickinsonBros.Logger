@@ -2,10 +2,9 @@
 using DickinsonBros.Logger.Extensions;
 using DickinsonBros.Logger.Runner.Services;
 using DickinsonBros.Redactor.Extensions;
-using DickinsonBros.Redactor.Models;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -25,50 +24,47 @@ namespace DickinsonBros.Logger.Runner
         {
             var loggerFactory = LoggerFactory.Create(builder =>
             {
-                builder
-                    .AddConsole();
+                builder.AddConsole();
             });
 
             loggerFactory.CreateLogger<Program>();
 
             try
             {
-                using (var applicationLifetime = new ApplicationLifetime())
-                {
-                    var services = InitializeDependencyInjection();
-                    ConfigureServices(services, applicationLifetime);
+               
+                var services = InitializeDependencyInjection();
+                ConfigureServices(services);
 
-                    using var provider = services.BuildServiceProvider();
-                    var loggingService = provider.GetRequiredService<ILoggingService<Program>>();
-
-                    var data = new Dictionary<string, object>
-                                   {
-                                       { "Username", "DemoUser" },
-                                       { "Password",
+                using var provider = services.BuildServiceProvider();
+                var loggingService = provider.GetRequiredService<ILoggingService<Program>>();
+                var hostApplicationLifetime = provider.GetService<IHostApplicationLifetime>();
+                var data = new Dictionary<string, object>
+                                {
+                                    { "Username", "DemoUser" },
+                                    { "Password",
 @"{
-    ""Password"": ""password""
+""Password"": ""password""
 }"
-                                       }
-                                   };
+                                    }
+                                };
 
-                    var message = "Generic Log Message";
-                    var exception = new Exception("Error");
+                var message = "Generic Log Message";
+                var exception = new Exception("Error");
 
-                    loggingService.LogDebugRedacted(message);
-                    loggingService.LogDebugRedacted(message, data);
+                loggingService.LogDebugRedacted(message);
+                loggingService.LogDebugRedacted(message, data);
 
-                    loggingService.LogInformationRedacted(message);
-                    loggingService.LogInformationRedacted(message, data);
+                loggingService.LogInformationRedacted(message);
+                loggingService.LogInformationRedacted(message, data);
 
-                    loggingService.LogWarningRedacted(message);
-                    loggingService.LogWarningRedacted(message, data);
+                loggingService.LogWarningRedacted(message);
+                loggingService.LogWarningRedacted(message, data);
 
-                    loggingService.LogErrorRedacted(message, exception);
-                    loggingService.LogErrorRedacted(message, exception, data);
-                    applicationLifetime.StopApplication();
+                loggingService.LogErrorRedacted(message, exception);
+                loggingService.LogErrorRedacted(message, exception, data);
+                hostApplicationLifetime.StopApplication();
 
-                    provider.ConfigureAwait(true);
-                }
+                provider.ConfigureAwait(true);
                 await Task.CompletedTask;
             }
             catch (Exception e)
@@ -82,7 +78,7 @@ namespace DickinsonBros.Logger.Runner
             }
         }
 
-        private void ConfigureServices(IServiceCollection services, ApplicationLifetime applicationLifetime)
+        private void ConfigureServices(IServiceCollection services)
         {
             services.AddOptions();
             services.AddLogging(config =>
@@ -95,10 +91,9 @@ namespace DickinsonBros.Logger.Runner
                 }
             });
 
-            services.AddSingleton<IApplicationLifetime>(applicationLifetime);
+            services.AddSingleton<IHostApplicationLifetime, HostApplicationLifetime>();
             services.AddLoggingService();
             services.AddRedactorService();
-            services.Configure<RedactorServiceOptions>(_configuration.GetSection(nameof(RedactorServiceOptions)));
         }
 
         IServiceCollection InitializeDependencyInjection()

@@ -1,7 +1,5 @@
 # DickinsonBros.Logger
-<a href="https://www.nuget.org/packages/DickinsonBros.Logger/">
-  <img src="https://img.shields.io/nuget/v/DickinsonBros.Logger">
-</a>
+<a href="https://dev.azure.com/marksamdickinson/dickinsonbros/_build/latest?definitionId=35&amp;branchName=master"> <img alt="Azure DevOps builds (branch)" src="https://img.shields.io/azure-devops/build/marksamdickinson/DickinsonBros/35/master"> </a> <a href="https://dev.azure.com/marksamdickinson/dickinsonbros/_build/latest?definitionId=35&amp;branchName=master"> <img alt="Azure DevOps coverage (branch)" src="https://img.shields.io/azure-devops/coverage/marksamdickinson/dickinsonbros/35/master"> </a><a href="https://dev.azure.com/marksamdickinson/DickinsonBros/_release?_a=releases&view=mine&definitionId=17"> <img alt="Azure DevOps releases" src="https://img.shields.io/azure-devops/release/marksamdickinson/b5a46403-83bb-4d18-987f-81b0483ef43e/17/18"> </a><a href="https://www.nuget.org/packages/DickinsonBros.Logger/"><img src="https://img.shields.io/nuget/v/DickinsonBros.Logger"></a>
 
 A logging service that redacts all logs
 
@@ -10,8 +8,6 @@ Features
 * Allows for dictionary of variables to be past in that all become first class propertys in the log.
 * Ability to add a correlation id that works though async in straight forward fashion
 * Allows for improved testability
-
-<a href="https://dev.azure.com/marksamdickinson/DickinsonBros/_build?definitionScope=%5CDickinsonBros.Logger">Builds</a>
 
 <h2>Example Usage</h2>
 

@@ -82,4 +82,4 @@ fail: DickinsonBros.Logger.Runner.Program[1]
       }
 ```
 
-[Sample Runner](https://github.com/msdickinson/DickinsonBros.Logger/tree/master/DickinsonBros.Logger.Runner)
+[Sample Runner](https://github.com/msdickinson/DickinsonBros.Logger/tree/master/Runner/DickinsonBros.Logger.Runner)

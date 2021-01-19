@@ -1,6 +1,6 @@
 ﻿using DickinsonBros.Logger.Abstractions;
 using DickinsonBros.Redactor.Abstractions;
-using DickinsonBros.Test;
+using DickinsonBros.UnitTest;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
